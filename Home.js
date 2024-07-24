@@ -17,12 +17,15 @@ fetch(api_url)
             // let image = data.recipe.image;
             // let url = data.recipe.url;
             // let ingredientLines = data.recipe.ingredientLines;
-            outputElement.innerHTML +=   `<p><b>${data.recipe.label}</b></p>
+            outputElement.innerHTML +=   `
+                                        <div class=recipes>    
+                                        <h3>${data.recipe.label}</h3>
                                      <img src="${data.recipe.image}"></img>
                                      <p>Calories: ${Math.round(data.recipe.calories)} </p>
                                      <p>Servings: ${data.recipe.yield}</p>
-                                     <button><a href="${data.recipe.url}" target="_blank">RECIPE</a></button>
-                                     <p>${data.recipe.ingredientLines}</p>`;
+                                     <button><a href="${data.recipe.url}" target="_blank"><b>RECIPE</b></a></button>
+                                     <p>${data.recipe.ingredientLines}</p>
+                                     </div>`;
         });         
         
     })
