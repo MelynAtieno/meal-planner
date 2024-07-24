@@ -41,6 +41,7 @@ body{
 }
 .recs-section h2{
     font-size: 30px;
+    margin-bottom: 2%;
 }
 #display-recs{
     padding: 10px;
