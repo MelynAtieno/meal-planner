@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="stylesheet" href="./styles/Home.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 </head>
 <body>
+    <div id="nav-placeholder"></div>
     <div class="home-title">
     <h1>What do you want to eat today?</h1>
     </div>
@@ -23,5 +25,10 @@
         </div>
     </section>
    <script src="Home.js"></script> 
+   <script>
+        $.get("Navbar.html", function(data){
+            $("#nav-placeholder").replaceWith(data);
+        });
+   </script>
 </body>
 </html>
