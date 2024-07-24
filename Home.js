@@ -21,10 +21,11 @@ fetch(api_url)
                                         <div class=recipes>    
                                         <h3>${data.recipe.label}</h3>
                                      <img src="${data.recipe.image}"></img>
-                                     <p>Calories: ${Math.round(data.recipe.calories)} </p>
-                                     <p>Servings: ${data.recipe.yield}</p>
+                                     <p><b>Calories:</b> ${Math.round(data.recipe.calories)} </p>
+                                     <p><b>Servings:</b> ${data.recipe.yield}</p>
                                      <button><a href="${data.recipe.url}" target="_blank"><b>RECIPE</b></a></button>
                                      <p>${data.recipe.ingredientLines}</p>
+                                     <button class=btn-save><b>SAVE</b></button>
                                      </div>`;
         });         
         

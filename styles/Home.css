@@ -1,6 +1,10 @@
 *{
     margin: auto;
     text-align: center;
+    
+}
+body{
+    background-color: #f3f0f0;
 }
 .home-title{
     padding: 20px;
@@ -46,12 +50,14 @@
     padding-inline: 24px;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
+   
 }
 .recipes{
     box-shadow: rgba(0,0,0,0.4) 0px 2px 4px, rgba(0,0,0,0.3) 0px 7px 13px -3px, rgba(0,0,0,0.2) 0px -3px 0px inset;
     margin: 2%;
     padding: 10px;
     border-radius: 20px;
+    background-color: white;
 }
 .recipes button{
     background-color: orange;
@@ -60,8 +66,20 @@
     height: 40px;
     width: 80px;
     border: none;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 .recipes button a{
     text-decoration: none;
     color: black;
+}
+.recipes .btn-save{
+    width: 60px;
+    margin-top: 2%;
+}
+.recipes img{
+    margin-top: 2%;
+}
+.recipes h3{
+    margin-top: 2%;
 }
