@@ -13,10 +13,7 @@ fetch(api_url)
         //console.log(data.hits[0].recipe);
         data.hits.forEach(data => {
             //console.log(recipe);
-            // let label = data.recipe.label;
-            // let image = data.recipe.image;
-            // let url = data.recipe.url;
-            // let ingredientLines = data.recipe.ingredientLines;
+            
             outputElement.innerHTML +=   `
                                         <div class=recipes>    
                                         <h3>${data.recipe.label}</h3>
