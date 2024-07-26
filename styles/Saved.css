@@ -1,0 +1,12 @@
+*{
+    margin: auto;
+    text-align: center;
+    
+}
+body{
+    background-color: #f3f0f0;
+}
+.saved-title{
+    margin-top: 5%;
+    padding: 20px;
+}
