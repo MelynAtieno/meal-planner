@@ -10,7 +10,7 @@ body{
     margin-top: 5%;
     padding: 20px;
 }
-.saved-sec{
+#saved-sec{
     padding: 10px;
     display: grid;
     max-width: 1200px;

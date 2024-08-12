@@ -1,6 +1,6 @@
 const api_url = "https://api.edamam.com/api/recipes/v2?type=public&app_id=d892684e&app_key=56901bab6e1988ad6ca75aabf25b2bda%09&imageSize=SMALL&random=true&field=label&field=image&field=url&field=ingredientLines&field=calories&field=yield&";
 const outputElement = document.getElementById("display-recs");
-//const recipe = document.querySelector("#display-recs")
+const savedElement = document.getElementById("saved-sec");
 
 fetch(api_url)
     .then(response =>{
@@ -30,3 +30,23 @@ fetch(api_url)
     .catch(error =>{
         console.error("Error:", error)
     })
+
+//search for a recipe
+
+
+//save recipe
+    $(document).on("click", ".btn-save", function(e){
+        e.preventDefault();
+
+    
+    let savedRecipes = outputElement.value;
+    localStorage.setItem("recipes", savedRecipes);
+    displayData();
+});
+    function displayData(){
+    const savedData = localStorage.getItem("recipes");
+    savedElement.innerHTML = savedData;
+ }
+    displayData();
+
+
