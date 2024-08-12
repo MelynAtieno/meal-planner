@@ -1,6 +1,7 @@
 const api_url = "https://api.edamam.com/api/recipes/v2?type=public&app_id=d892684e&app_key=56901bab6e1988ad6ca75aabf25b2bda%09&imageSize=SMALL&random=true&field=label&field=image&field=url&field=ingredientLines&field=calories&field=yield&";
 const outputElement = document.getElementById("display-recs");
 const savedElement = document.getElementById("saved-sec");
+const searchBar = document.getElementById("searchBar")
 
 fetch(api_url)
     .then(response =>{
@@ -20,9 +21,9 @@ fetch(api_url)
                                      <img src="${data.recipe.image}"></img>
                                      <p><b>Calories:</b> ${Math.round(data.recipe.calories)} </p>
                                      <p><b>Servings:</b> ${data.recipe.yield}</p>
-                                     <button><a href="${data.recipe.url}" target="_blank"><b>RECIPE</b></a></button>
+                                     <p class=ingredients><b>Ingredients</b></p>
                                      <p>${data.recipe.ingredientLines}</p>
-                                     <button class=btn-save><b>SAVE</b></button>
+                                     <span><button><a href="${data.recipe.url}" target="_blank"><b>RECIPE</b></a></button></span> <span><button class=btn-save><b>SAVE</b></button></span>
                                      </div>`;
         });         
         
@@ -32,6 +33,10 @@ fetch(api_url)
     })
 
 //search for a recipe
+searchBar.addEventListener("keyup", e=>{
+    const searchString = e.target.value;
+    e.preventDefault();
+});
 
 
 //save recipe

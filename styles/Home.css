@@ -67,20 +67,26 @@ body{
     height: 40px;
     width: 80px;
     border: none;
-    margin-top: 2%;
+    margin-top: 4%;
     margin-bottom: 2%;
+    margin-right: 4%;
 }
 .recipes button a{
     text-decoration: none;
     color: black;
 }
 .recipes .btn-save{
-    width: 60px;
-    margin-top: 2%;
+    width: 80px;
+    margin-top: 4%;
+    background-color: rgb(97, 69, 18);
+    color: white;
 }
 .recipes img{
     margin-top: 2%;
 }
 .recipes h3{
+    margin-top: 2%;
+}
+.recipes .ingredients{
     margin-top: 2%;
 }
