@@ -1,7 +1,8 @@
-const api_url = "https://api.edamam.com/api/recipes/v2?type=public&app_id=d892684e&app_key=56901bab6e1988ad6ca75aabf25b2bda%09&imageSize=SMALL&random=true&field=label&field=image&field=url&field=ingredientLines&field=calories&field=yield&";
+const api_url = "https://api.edamam.com/api/recipes/v2?type=public&app_id=d892684e&app_key=56901bab6e1988ad6ca75aabf25b2bda%09&imageSize=SMALL&random=true&field=label&field=image&field=url&field=ingredientLines&field=calories&field=yield";
 const outputElement = document.getElementById("display-recs");
 const savedElement = document.getElementById("saved-sec");
-const searchBar = document.getElementById("searchBar")
+const searchBar = document.getElementById("searchBar");
+const searchButton = document.getElementById("btn-search")
 
 fetch(api_url)
     .then(response =>{
@@ -33,10 +34,29 @@ fetch(api_url)
     })
 
 //search for a recipe
-searchBar.addEventListener("keyup", e=>{
-    const searchString = e.target.value;
-    e.preventDefault();
-});
+function searchRecipes(){
+   // e.preventDefault();
+    if(searchBar.value !== ''){
+    fetch(`https://api.edamam.com/api/recipes/v2?type=public&app_id=d892684e&app_key=56901bab6e1988ad6ca75aabf25b2bda%09&imageSize=SMALL&field=label&field=image&field=url&field=ingredientLines&field=calories&field=yield&q=${searchBar.value}`)
+    .then(response => response.json())
+    .then(data =>{data.hits.forEach(data => {        
+        outputElement.innerHTML +=   `
+                                    <div class=recipes>    
+                                    <h3>${data.recipe.label}</h3>
+                                 <img src="${data.recipe.image}"></img>
+                                 <p><b>Calories:</b> ${Math.round(data.recipe.calories)} </p>
+                                 <p><b>Servings:</b> ${data.recipe.yield}</p>
+                                 <p class=ingredients><b>Ingredients</b></p>
+                                 <p>${data.recipe.ingredientLines}</p>
+                                 <span><button><a href="${data.recipe.url}" target="_blank"><b>RECIPE</b></a></button></span> <span><button class=btn-save><b>SAVE</b></button></span>
+                                 </div>`;
+
+    })
+})
+    } else {
+        alert("Please enter a value")
+    }
+}
 
 
 //save recipe
