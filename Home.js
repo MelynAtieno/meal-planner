@@ -69,6 +69,7 @@ function searchRecipes(){
     
 }
 
-
 //save recipe
+let savedRecipes=[];
+localStorage.setItem('recipes',JSON.stringify(savedRecipes))
    
