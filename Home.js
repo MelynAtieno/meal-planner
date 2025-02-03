@@ -2,6 +2,8 @@ const api_url = "https://api.edamam.com/api/recipes/v2?type=public&app_id=d89268
 const searchButton = document.getElementById("btn-search");
 const outputElement = document.getElementById("display-recs");
 const savedElement = document.getElementById("saved-sec");
+const saveButton = document.getElementById("save");
+const savedOutput = document.getElementById("saved-sec");
 
 
 
@@ -25,7 +27,7 @@ fetch(api_url)
                                      <p><b>Servings:</b> ${data.recipe.yield}</p>
                                      <p class=ingredients><b>Ingredients</b></p>
                                      <p>${data.recipe.ingredientLines}</p>
-                                     <span><button><a href="${data.recipe.url}" target="_blank"><b>RECIPE</b></a></button></span> <span><button class=btn-save><b>SAVE</b></button></span>
+                                     <span><button><a href="${data.recipe.url}" target="_blank"><b>RECIPE</b></a></button></span> <span><button id=save class=btn-save onclick="saveRecipe()"><b>SAVE</b></button></span>
                                      </div>`;
         });         
         
@@ -55,7 +57,7 @@ function searchRecipes(){
                                  <p><b>Servings:</b> ${recipeData.recipe.yield}</p>
                                  <p class=ingredients><b>Ingredients</b></p>
                                  <p>${recipeData.recipe.ingredientLines}</p>
-                                 <span><button><a href="${recipeData.recipe.url}" target="_blank"><b>RECIPE</b></a></button></span> <span><button class=btn-save><b>SAVE</b></button></span>
+                                 <span><button><a href="${recipeData.recipe.url}" target="_blank"><b>RECIPE</b></a></button></span> <span><button id=save class=btn-save><b>SAVE</b></button></span>
                                  </div>`;
 
     })
@@ -70,6 +72,47 @@ function searchRecipes(){
 }
 
 //save recipe
-let savedRecipes=[];
-localStorage.setItem('recipes',JSON.stringify(savedRecipes))
-   
+
+//? JSON.parse(localStorage.getItem('recipes')):[];
+function saveRecipe(recipe){
+    let savedRecipes= JSON.parse(localStorage.getItem('saved-recipes')) || [];
+
+    //check if the recipe is saved
+    if(!savedRecipes.some(saved => saved.id === recipe.id)){
+        savedRecipes.push(recipe);
+        localStorage.setItem("saved-recipes", JSON.stringify(savedRecipes));
+        alert("Recipe saved successfully!");
+    } else {
+        alert("Recipe is already saved!")
+    }
+
+}
+
+// load saved recipes
+function getSavedRecipes(){
+    return JSON.parse(localStorage.getItem('savedRecipes')) || [];
+}
+
+function displaySavedRecipes(){
+    const savedOutput = document.getElementById("saved-sec");
+    const savedRecipes = getSavedRecipes();
+    const recipeContainer = document.getElementById('saved-sec');
+
+
+    recipeContainer.innerHTML = '';
+    savedRecipes.forEach(recipe => {
+        savedOutput.innerHTML +=   `
+            <div class=recipes>    
+            <h3>${recipe.label}</h3>
+            <img src="${recipe.image}"></img>
+            <p><b>Calories:</b> ${Math.round(recipe.calories)} </p>
+            <p><b>Servings:</b> ${recipe.yield}</p>
+            <p class=ingredients><b>Ingredients</b></p>
+            <p>${recipe.ingredientLines}</p>
+            <span><button><a href="${recipe.url}" target="_blank"><b>RECIPE</b></a></button></span> <span><button id=save class=btn-save onclick="save()"><b>SAVE</b></button></span>
+            </div>`;
+
+    recipeContainer.appendChild(outputElement);
+
+    });
+}
