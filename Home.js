@@ -136,8 +136,13 @@ function displaySavedRecipes(){
     savedOutput.innerHTML = "";
     savedRecipes.forEach(recipe => {
         savedOutput.innerHTML +=   `
-            <div class=recipes>    
+            <div class="recipes">    
             <h3>${recipe.label}</h3>
+            <img src="${recipe.image}"></img>
+            <p><b>Calories:</b> ${Math.round(recipe.calories)} </p>
+            <p><b>Servings:</b> ${recipe.yield}</p>
+            <p class=ingredients><b>Ingredients</b></p>
+            <p>${recipe.ingredientLines}</p>
             <span><button><a href="${recipe.url}" target="_blank"><b>RECIPE</b></a></button></span>
             <span><button id=remove class="btn-remove" onclick="removeRecipe('${recipe.url}')"><b>REMOVE</b></button></span>
             </div>`;
