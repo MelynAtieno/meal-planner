@@ -14,7 +14,7 @@ fetch(api_url)
     })
     .then((data) =>{
         //console.log(data);
-        outputElement.innerHTML = "";
+        //outputElement.innerHTML = "";
         data.hits.forEach((recipeData, index) => {
             const recipe = recipeData.recipe;
             //console.log(index, recipe.url)
@@ -133,7 +133,7 @@ function displaySavedRecipes(){
     //const recipeContainer = document.getElementById('saved-sec');
 
 
-    //savedOutput.innerHTML = "";
+    savedOutput.innerHTML = "";
     savedRecipes.forEach(recipe => {
         savedOutput.innerHTML +=   `
             <div class=recipes>    
