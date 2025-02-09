@@ -6,6 +6,35 @@
 body{
     background-color: #f3f0f0;
 }
-.days{
+
+.mealplan-title{
+    padding: 20px;
     margin-top: 5%;
+
+}
+.mealplan-title h1{
+    font-size: 50px;
+}
+.mealplanner_input{
+    height: 40px;
+    width: 300px;
+    text-align: left;
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(0,0,0,0.35) 0px 3px 8px;
+}
+
+.btn-add-meal{
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 80px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: orange;
+    margin-left: 1%;
+}
+
+#meal_plan{
+    padding: 10px;
 }
