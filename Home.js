@@ -116,6 +116,7 @@ function searchRecipes(){
     }
     
 }
+
 //save recipe
 function saveRecipe(recipe){
     console.log("save recipe function:",recipe.url)
@@ -138,9 +139,7 @@ function saveRecipe(recipe){
         alert("Recipe saved successfully!")
     } else {
         alert("Recipe is already saved!")
-    }
-
-    
+    }  
     
 
 }
@@ -153,9 +152,7 @@ function getSavedRecipes(){
 function displaySavedRecipes(){
     const savedOutput = document.getElementById("saved-sec");
     const savedRecipes = getSavedRecipes();
-    //const recipeContainer = document.getElementById('saved-sec');
-
-
+    
     savedOutput.innerHTML = "";
     savedRecipes.forEach(recipe => {
         savedOutput.innerHTML +=   `
@@ -170,8 +167,6 @@ function displaySavedRecipes(){
             <span><button class="btn-remove" onclick="removeRecipe('${recipe.url}')"><b>REMOVE</b></button></span>
             </div>`;
 
-    //recipeContainer.appendChild(outputElement);
-
     });
 }
 
@@ -180,8 +175,6 @@ function removeRecipe(recipeUrl){
     let savedRecipes = getSavedRecipes();
     savedRecipes = savedRecipes.filter(recipe => recipe.url !== recipeUrl);
     localStorage.setItem('saved-recipes', JSON.stringify(savedRecipes));
-    displaySavedRecipes();    
-
-
+    displaySavedRecipes();  
 
 }
