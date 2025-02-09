@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal_Planner</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+<script>
+     $.get("Navbar.html", function(data){
+            $("#nav-placeholder").replaceWith(data);
+        });
+</script>  
+</body>
+</html>
