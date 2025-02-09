@@ -34,11 +34,11 @@ fetch(api_url)
         document.querySelectorAll(".btn-save").forEach((btn) => {
             btn.addEventListener("click", (event) => {
                 const index = parseInt(event.target.getAttribute("data-index"));
-                console.log("Button clicked with index:", index);
+               // console.log("Button clicked with index:", index);
                 
                 if (index >= 0 && index < data.hits.length){
                     const recipe = data.hits[index].recipe;
-                    console.log("saving recipe:", recipe.url);
+                    //console.log("saving recipe:", recipe.url);
 
                     if(recipe){
                         if(!recipe.url){
@@ -69,21 +69,44 @@ function searchRecipes(){
     if(input !== ''){
     fetch(search_url)
     .then(response => response.json())
-    .then(data =>{
+    .then((data) =>{
         outputElement.innerHTML = '';
-        data.hits.forEach(recipeData => {        
+        data.hits.forEach((recipeData, index) => { 
+        const recipe = recipeData.recipe;       
         outputElement.innerHTML +=   `
                                     <div class=recipes>    
-                                    <h3>${recipeData.recipe.label}</h3>
-                                 <img src="${recipeData.recipe.image}"></img>
-                                 <p><b>Calories:</b> ${Math.round(recipeData.recipe.calories)} </p>
-                                 <p><b>Servings:</b> ${recipeData.recipe.yield}</p>
+                                    <h3>${recipe.label}</h3>
+                                 <img src="${recipe.image}"></img>
+                                 <p><b>Calories:</b> ${Math.round(recipe.calories)} </p>
+                                 <p><b>Servings:</b> ${recipe.yield}</p>
                                  <p class=ingredients><b>Ingredients</b></p>
-                                 <p>${recipeData.recipe.ingredientLines}</p>
-                                 <span><button><a href="${recipeData.recipe.url}" target="_blank"><b>RECIPE</b></a></button></span> <span><button id=save class=btn-save><b>SAVE</b></button></span>
+                                 <p>${recipe.ingredientLines}</p>
+                                 <span><button><a href="${recipe.url}" target="_blank"><b>RECIPE</b></a></button></span> <span><button class=btn-save data-index="${index}">SAVE</button></span>
                                  </div>`;
 
     })
+    document.querySelectorAll(".btn-save").forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+            const index = parseInt(event.target.getAttribute("data-index"));
+           // console.log("Button clicked with index:", index);
+            
+            if (index >= 0 && index < data.hits.length){
+                const recipe = data.hits[index].recipe;
+                //console.log("saving recipe:", recipe.url);
+
+                if(recipe){
+                    if(!recipe.url){
+                        console.error("recipe has no url")
+                        return;
+                    }
+                    saveRecipe(recipe);
+                } else {
+                    console.error("Undefined recipe:", recipe);
+                }
+            
+            }
+        });
+    });       
 })
 .catch(error => {
     console.error("Error fetching recipes", error);
@@ -144,7 +167,7 @@ function displaySavedRecipes(){
             <p class=ingredients><b>Ingredients</b></p>
             <p>${recipe.ingredientLines}</p>
             <span><button><a href="${recipe.url}" target="_blank"><b>RECIPE</b></a></button></span>
-            <span><button id=remove class="btn-remove" onclick="removeRecipe('${recipe.url}')"><b>REMOVE</b></button></span>
+            <span><button class="btn-remove" onclick="removeRecipe('${recipe.url}')"><b>REMOVE</b></button></span>
             </div>`;
 
     //recipeContainer.appendChild(outputElement);
@@ -157,5 +180,8 @@ function removeRecipe(recipeUrl){
     let savedRecipes = getSavedRecipes();
     savedRecipes = savedRecipes.filter(recipe => recipe.url !== recipeUrl);
     localStorage.setItem('saved-recipes', JSON.stringify(savedRecipes));
-    displaySavedRecipes();
+    displaySavedRecipes();    
+
+
+
 }
